@@ -11,7 +11,7 @@ Summary:	An Apache module for creating an online gallery
 Summary(pl):	Modu³ Apache'a do tworzenia galerii online
 Name:		Apache-Gallery
 Version:	0.9.1
-Release:	0.2
+Release:	0.3
 License:	Artistic
 Group:		Applications/Graphics
 Source0:	http://apachegallery.dk/download/%{name}-%{version}.tar.gz
@@ -34,7 +34,7 @@ Conflicts:	apache-mod_autoindex
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_noautoreq	'perl(APR::Table)' 'perl(Apache2)' 'perl(Apache::Const)' 'perl(Apache::RequestIO)' 'perl(Apache::RequestRec)' 'perl(Apache::SubRequest)'
-%define		_apacheicons	/home/httpd/icons/gallery
+%define		_apacheicons	/home/services/httpd/icons/gallery
 
 %description
 Apache::Gallery is a mod_perl handler that sits on top of your
