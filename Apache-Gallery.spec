@@ -1,10 +1,12 @@
 # TODO:
 # - prepare subpackage with virtual
 # - configuration for apache
+# - switch to vendordirs and apache 2.x or apache1 (depending on which mod_perl is supported)
 #
 %include	/usr/lib/rpm/macros.perl
 %define 	apxs		/usr/sbin/apxs
 Summary:	An Apache module for creating an online gallery
+Summary(pl):	Modu³ Apache'a do tworzenia galerii online
 Name:		Apache-Gallery
 Version:	0.8
 Release:	0.1
@@ -29,6 +31,13 @@ DocumentRoot and creates an image gallery of the files and directories
 there. It creates an thumbnail index of each directory and allows
 viewing of pictures in different resolutions. Pictures are resized on
 the fly and cached.
+
+%description -l pl
+Apache::Gallery to procedura obs³ugi dla modu³u mod_perl po³o¿ona w
+DocumentRoot, tworz±ca galeriê obrazów z umieszczonych tam plików i
+katalogów. Tworzy indeks z miniaturkami z ka¿dego katalogu i pozwala
+na ogl±danie obrazków w ró¿nych rozdzielczo¶ciach. Obrazki s±
+przeskalowywane w locie i buforowane.
 
 %prep
 %setup -q
