@@ -7,7 +7,7 @@ Summary:	An Apache module for creating an online gallery
 Summary(pl):	Modu³ Apache'a do tworzenia galerii online
 Name:		Apache-Gallery
 Version:	0.9.1
-Release:	1.9
+Release:	2
 License:	Artistic
 Group:		Applications/Graphics
 Source0:	http://apachegallery.dk/download/%{name}-%{version}.tar.gz
