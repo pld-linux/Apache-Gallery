@@ -3,26 +3,31 @@
 # - configuration for apache
 # - switch to vendordirs and apache 2.x or apache1 (depending on which mod_perl is supported)
 #
+%bcond_with	tests	# Build with tests
+
 %include	/usr/lib/rpm/macros.perl
 %define 	apxs		/usr/sbin/apxs
 Summary:	An Apache module for creating an online gallery
 Summary(pl):	Modu³ Apache'a do tworzenia galerii online
 Name:		Apache-Gallery
 Version:	0.9.1
-Release:	0.1
+Release:	0.2
 License:	Artistic
 Group:		Applications/Graphics
 Source0:	http://apachegallery.dk/download/%{name}-%{version}.tar.gz
 # Source0-md5:	882e650e6fc3f059e84eca1564b5f32f
 #Source1:	%{name}.conf
 URL:		http://apachegallery.dk/
-BuildRequires:	apache-mod_perl
-BuildRequires:	perl-Image-Imlib2 >= 1.00
+BuildRequires:	apache-mod_perl >= 1.99
+%{?with_tests:BuildRequires:	apache1-mod_perl}
+BuildRequires:	perl-CGI >= 2.93
+BuildRequires:	perl-Image-Imlib2 >= 1.02
 BuildRequires:	perl-Image-Info
 BuildRequires:	perl-Image-Size
 BuildRequires:	perl-Text-Template
+BuildRequires:	perl-URI >= 1.23
 BuildRequires:	perl-devel
-BuildRequires:	perl-libapreq
+BuildRequires:	perl-libapreq2
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 Requires:	apache-mod_perl
 Conflicts:	apache-mod_autoindex
@@ -49,9 +54,13 @@ przeskalowywane w locie i buforowane.
 %setup -q
 
 %build
-%{__perl} Makefile.PL
-%{__make}
-%{__make} test
+%{__perl} Makefile.PL \
+	INSTALLDIRS=vendor
+
+%{__make} \
+	OPTIMIZE="%{rpmcflags}"
+
+%{?with_tests:%{__make} test}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -84,7 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc Changes INSTALL README TODO UPGRADE
-%{perl_sitelib}/Apache/Gallery.pm
+%{perl_vendorlib}/Apache/Gallery.pm
 %dir %{_datadir}/%{name}
 %dir %{_datadir}/%{name}/templates
 %dir %{_datadir}/%{name}/templates/new
