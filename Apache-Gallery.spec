@@ -25,6 +25,7 @@ BuildRequires:	perl-devel
 BuildRequires:	perl-libapreq
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 Requires:	apache-mod_perl
+Obsoletes:	apache-mod_autoindex
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_noautoreq	'perl(APR::Table)' 'perl(Apache2)' 'perl(Apache::Const)' 'perl(Apache::RequestIO)' 'perl(Apache::RequestRec)' 'perl(Apache::SubRequest)'
