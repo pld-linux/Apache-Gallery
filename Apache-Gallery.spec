@@ -72,7 +72,7 @@ install templates/new/*.{css,tpl} $RPM_BUILD_ROOT%{_appdir}/templates/new/
 install templates/default/*.{css,tpl} $RPM_BUILD_ROOT%{_appdir}/templates/default/
 install htdocs/*.png $RPM_BUILD_ROOT%{_apacheicons}
 
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/httpd/httpd.conf/99_%{name}.conf
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/httpd/httpd.conf/09_%{name}.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
