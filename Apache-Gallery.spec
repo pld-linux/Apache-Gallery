@@ -1,6 +1,7 @@
 #
-%bcond_with	tests	# Build with tests
-
+# Conditional build:
+%bcond_with	tests	# perform "make test" during build
+#
 %include	/usr/lib/rpm/macros.perl
 %define 	apxs		/usr/sbin/apxs
 Summary:	An Apache module for creating an online gallery
