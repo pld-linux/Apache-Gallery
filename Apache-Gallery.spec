@@ -7,7 +7,7 @@ Summary:	An Apache module for creating an online gallery
 Summary(pl):	Modu³ Apache'a do tworzenia galerii online
 Name:		Apache-Gallery
 Version:	0.9.1
-Release:	2
+Release:	1.9
 License:	Artistic
 Group:		Applications/Graphics
 Source0:	http://apachegallery.dk/download/%{name}-%{version}.tar.gz
@@ -63,7 +63,7 @@ przeskalowywane w locie i buforowane.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_appdir}/templates/{new,default},%{_apacheicons},/etc/httpd}
+install -d $RPM_BUILD_ROOT{%{_appdir}/templates/{new,default},%{_apacheicons},/etc/httpd/httpd.conf}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
