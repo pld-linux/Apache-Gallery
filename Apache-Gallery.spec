@@ -1,7 +1,6 @@
 # TODO:
 # - prepare subpackage with virtual
 # - configuration for apache
-# - switch to vendordirs and apache 2.x or apache1 (depending on which mod_perl is supported)
 #
 %bcond_with	tests	# Build with tests
 
@@ -11,12 +10,13 @@ Summary:	An Apache module for creating an online gallery
 Summary(pl):	Modu³ Apache'a do tworzenia galerii online
 Name:		Apache-Gallery
 Version:	0.9.1
-Release:	0.3
+Release:	1
 License:	Artistic
 Group:		Applications/Graphics
 Source0:	http://apachegallery.dk/download/%{name}-%{version}.tar.gz
 # Source0-md5:	882e650e6fc3f059e84eca1564b5f32f
 #Source1:	%{name}.conf
+Patch0:		%{name}-apache2.patch
 URL:		http://apachegallery.dk/
 BuildRequires:	apache-mod_perl >= 1.99
 %{?with_tests:BuildRequires:	apache1-mod_perl}
@@ -52,6 +52,7 @@ przeskalowywane w locie i buforowane.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__perl} Makefile.PL \
@@ -102,5 +103,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/%{name}/templates/default
 %{_datadir}/%{name}/templates/default/*.tpl
 %{_datadir}/%{name}/templates/default/*.css
+%dir %{_apacheicons}
 %{_apacheicons}/*.png
 %{_mandir}/man3/*.3*
