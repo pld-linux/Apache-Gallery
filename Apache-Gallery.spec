@@ -7,18 +7,18 @@
 Summary:	An Apache module for creating an online gallery
 Summary(pl):	Modu³ Apache'a do tworzenia galerii online
 Name:		Apache-Gallery
-Version:	0.9.1
-Release:	2
+Version:	1.0
+%define		_rc	RC2
+Release:	0.%{_rc}.1
 License:	Artistic
 Group:		Applications/Graphics
-Source0:	http://apachegallery.dk/download/%{name}-%{version}.tar.gz
-# Source0-md5:	882e650e6fc3f059e84eca1564b5f32f
+Source0:	http://apachegallery.dk/download/%{name}-%{version}%{_rc}.tar.gz
+# Source0-md5:	d195f22377276d00d083b1b3e48847bb
 Source1:	%{name}.conf
-Patch0:		%{name}-apache2.patch
 URL:		http://apachegallery.dk/
 BuildRequires:	apache-mod_perl >= 1.99
 %{?with_tests:BuildRequires:	apache1-mod_perl}
-BuildRequires:	perl-CGI >= 2.93
+BuildRequires:	perl-CGI >= 3.08
 BuildRequires:	perl-Image-Imlib2 >= 1.02
 BuildRequires:	perl-Image-Info
 BuildRequires:	perl-Image-Size
@@ -27,7 +27,7 @@ BuildRequires:	perl-URI >= 1.23
 BuildRequires:	perl-devel
 BuildRequires:	perl-libapreq2
 BuildRequires:	rpm-perlprov >= 3.0.3-16
-Requires:	apache-mod_perl
+Requires:	apache-mod_perl >= 1:2.0.0
 Conflicts:	apache-mod_autoindex
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -50,8 +50,7 @@ na ogl±danie obrazków w ró¿nych rozdzielczo¶ciach. Obrazki s±
 przeskalowywane w locie i buforowane.
 
 %prep
-%setup -q
-%patch0 -p1
+%setup -q -n %{name}-%{version}%{_rc}
 
 %build
 %{__perl} Makefile.PL \
