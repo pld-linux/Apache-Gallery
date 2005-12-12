@@ -94,7 +94,7 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc Changes INSTALL README TODO UPGRADE
-%attr(640,root,http) %config(noreplace) %verify(not size mtime md5) /etc/httpd/httpd.conf/*%{name}.conf
+%attr(640,root,http) %config(noreplace) %verify(not md5 mtime size) /etc/httpd/httpd.conf/*%{name}.conf
 %{perl_vendorlib}/Apache/Gallery.pm
 %dir %{_appdir}
 %dir %{_appdir}/templates
