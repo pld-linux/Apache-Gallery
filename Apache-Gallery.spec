@@ -4,11 +4,13 @@
 #
 %include	/usr/lib/rpm/macros.perl
 %define 	apxs		/usr/sbin/apxs
+%define		pdir	Apache
+%define		pnam	Gallery
+%define		_rc	RC2
 Summary:	An Apache module for creating an online gallery
 Summary(pl):	Modu³ Apache'a do tworzenia galerii online
 Name:		Apache-Gallery
 Version:	1.0
-%define		_rc	RC2
 Release:	0.%{_rc}.1
 License:	Artistic
 Group:		Applications/Graphics
@@ -16,7 +18,7 @@ Source0:	http://apachegallery.dk/download/%{name}-%{version}%{_rc}.tar.gz
 # Source0-md5:	d195f22377276d00d083b1b3e48847bb
 Source1:	%{name}.conf
 URL:		http://apachegallery.dk/
-BuildRequires:	apache-mod_perl >= 1.99
+BuildRequires:	apache-mod_perl-devel >= 1:1.99
 %{?with_tests:BuildRequires:	apache1-mod_perl}
 BuildRequires:	perl-CGI >= 3.08
 BuildRequires:	perl-Image-Imlib2 >= 1.02
@@ -27,6 +29,7 @@ BuildRequires:	perl-URI >= 1.23
 BuildRequires:	perl-devel
 BuildRequires:	perl-libapreq2
 BuildRequires:	rpm-perlprov >= 3.0.3-16
+BuildRequires:	rpmbuild(macros) >= 1.268
 Requires:	apache-mod_perl >= 1:2.0.0
 Conflicts:	apache-mod_autoindex
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -78,17 +81,11 @@ install %{SOURCE1} $RPM_BUILD_ROOT/etc/httpd/httpd.conf/09_%{name}.conf
 rm -rf $RPM_BUILD_ROOT
 
 %post
-if [ -f /var/lock/subsys/httpd ]; then
-	/etc/rc.d/init.d/httpd reload 1>&2
-else
-	echo "Run \"/etc/rc.d/init.d/httpd start\" to start apache HTTP daemon."
-fi
+%service -q httpd reload
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/httpd ]; then
-		/etc/rc.d/init.d/httpd reload 1>&2
-	fi
+	%service -q httpd reload
 fi
 
 %files
