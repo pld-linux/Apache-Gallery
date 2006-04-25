@@ -6,7 +6,7 @@
 %define 	apxs		/usr/sbin/apxs
 %define		pdir	Apache
 %define		pnam	Gallery
-%define		_rc	RC2
+%define		_rc	RC3
 Summary:	An Apache module for creating an online gallery
 Summary(pl):	Modu³ Apache'a do tworzenia galerii online
 Name:		Apache-Gallery
@@ -15,7 +15,7 @@ Release:	0.%{_rc}.1
 License:	Artistic
 Group:		Applications/Graphics
 Source0:	http://apachegallery.dk/download/%{name}-%{version}%{_rc}.tar.gz
-# Source0-md5:	d195f22377276d00d083b1b3e48847bb
+# Source0-md5:	a705cbecf2f124d18a3bde3fc36384e8
 Source1:	%{name}.conf
 URL:		http://apachegallery.dk/
 BuildRequires:	apache-mod_perl-devel >= 1:1.99
