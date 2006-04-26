@@ -11,12 +11,13 @@ Summary:	An Apache module for creating an online gallery
 Summary(pl):	Modu³ Apache'a do tworzenia galerii online
 Name:		Apache-Gallery
 Version:	1.0
-Release:	0.%{_rc}.1
+Release:	0.%{_rc}.1.1
 License:	Artistic
 Group:		Applications/Graphics
 Source0:	http://apachegallery.dk/download/%{name}-%{version}%{_rc}.tar.gz
 # Source0-md5:	a705cbecf2f124d18a3bde3fc36384e8
 Source1:	%{name}.conf
+Patch0:		%{name}-cache_dir.patch
 URL:		http://apachegallery.dk/
 BuildRequires:	apache-mod_perl-devel >= 1:1.99
 %{?with_tests:BuildRequires:	apache1-mod_perl}
@@ -37,6 +38,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_noautoreq	'perl(APR::Table)' 'perl(Apache2)' 'perl(Apache::Const)' 'perl(Apache::RequestIO)' 'perl(Apache::RequestRec)' 'perl(Apache::SubRequest)'
 %define		_appdir		%{_datadir}/%{name}
 %define		_apacheicons	%{_appdir}/icons
+%define		_cachedir	/var/cache/%{name}
 
 %description
 Apache::Gallery is a mod_perl handler that sits on top of your
@@ -54,6 +56,7 @@ przeskalowywane w locie i buforowane.
 
 %prep
 %setup -q -n %{name}-%{version}%{_rc}
+%patch0 -p1
 
 %build
 %{__perl} Makefile.PL \
@@ -66,7 +69,7 @@ przeskalowywane w locie i buforowane.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_appdir}/templates/{new,default},%{_apacheicons},/etc/httpd/httpd.conf}
+install -d $RPM_BUILD_ROOT{%{_appdir}/templates/{new,default},%{_apacheicons},/etc/httpd/httpd.conf,%{_cachedir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -82,6 +85,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 %service -q httpd reload
+
+%triggerpostun -- Apache-Gallery < 1.0-0.RC3.2
+if [ -d "/var/tmp/Apache-Gallery" ]; then
+	echo "Removing old cache /var/tmp/Apache-Gallery. New location: %{_cachedir}"
+	rm -rf /var/tmp/Apache-Gallery
+fi
 
 %preun
 if [ "$1" = "0" ]; then
@@ -103,4 +112,5 @@ fi
 %{_appdir}/templates/default/*.css
 %dir %{_apacheicons}
 %{_apacheicons}/*.png
+%attr(770,root,http) %dir %{_cachedir}
 %{_mandir}/man3/*.3*
