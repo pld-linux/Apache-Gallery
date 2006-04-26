@@ -1,0 +1,69 @@
+--- ./lib/Apache/Gallery.pm.org	2005-09-16 08:53:04.000000000 +0000
++++ ./lib/Apache/Gallery.pm	2006-04-26 20:03:10.000000000 +0000
+@@ -769,7 +769,7 @@
+ 
+ 	unless ($r->dir_config('GalleryCacheDir')) {
+ 
+-		$cache_root = '/var/tmp/Apache-Gallery/';
++		$cache_root = '/var/cache/Apache-Gallery/';
+ 		if ($r->server->is_virtual) {
+ 			$cache_root = File::Spec->catdir($cache_root, $r->server->server_hostname);
+ 		} else {
+@@ -1521,7 +1521,7 @@
+ The options are set in the httpd.conf/.htaccess file using the syntax:
+ B<PerlSetVar OptionName 'value'>
+ 
+-Example: B<PerlSetVar GalleryCacheDir '/var/tmp/Apache-Gallery/'>
++Example: B<PerlSetVar GalleryCacheDir '/var/cache/Apache-Gallery/'>
+ 
+ =over 4
+ 
+@@ -1538,7 +1538,7 @@
+ =item B<GalleryCacheDir>
+ 
+ Directory where Apache::Gallery should create its cache with scaled
+-pictures. The default is /var/tmp/Apache-Gallery/ . Here, a directory
++pictures. The default is /var/cache/Apache-Gallery/ . Here, a directory
+ for each virtualhost or location will be created automaticly. Make
+ sure your webserver has write access to the CacheDir.
+ 
+--- ./README.org	2005-09-16 08:32:12.000000000 +0000
++++ ./README	2006-04-26 20:01:17.000000000 +0000
+@@ -19,7 +19,7 @@
+     The options are set in the httpd.conf/.htaccess file using the syntax:
+     PerlSetVar OptionName 'value'
+ 
+-    Example: PerlSetVar GalleryCacheDir '/var/tmp/Apache-Gallery/'
++    Example: PerlSetVar GalleryCacheDir '/var/cache/Apache-Gallery/'
+ 
+     GalleryAutoRotate
+         Some cameras, like the Canon G3, can detect the orientation of a the
+@@ -32,7 +32,7 @@
+ 
+     GalleryCacheDir
+         Directory where Apache::Gallery should create its cache with scaled
+-        pictures. The default is /var/tmp/Apache-Gallery/ . Here, a
++        pictures. The default is /var/cache/Apache-Gallery/ . Here, a
+         directory for each virtualhost or location will be created
+         automaticly. Make sure your webserver has write access to the
+         CacheDir.
+--- ./UPGRADE.org	2005-06-07 07:50:54.000000000 +0000
++++ ./UPGRADE	2006-04-26 20:01:51.000000000 +0000
+@@ -68,7 +68,7 @@
+ directory (usually /tmp)
+ Since 0.5, your .cache subdirectories are no longer used and can be
+ safely deleted. All cached images are now kept in
+-/var/tmp/Apache-Gallery/ unless you set GalleryCacheDir.
++/var/cache/Apache-Gallery/ unless you set GalleryCacheDir.
+ 
+ For users upgrading from 0.4 to 0.5
+ 
+@@ -86,7 +86,7 @@
+ 
+ A new option has been added:
+ 
+-PerlSetVar	GalleryCacheDir '/var/tmp/Apache-Gallery/'
++PerlSetVar	GalleryCacheDir '/var/cache/Apache-Gallery/'
+ 
+ GalleryCacheDir is optional but you can use it to decide
+ where Apache::Gallery should place the scaled pictures.
