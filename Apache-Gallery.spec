@@ -11,7 +11,7 @@ Summary:	An Apache module for creating an online gallery
 Summary(pl):	Modu³ Apache'a do tworzenia galerii online
 Name:		Apache-Gallery
 Version:	1.0
-Release:	0.%{_rc}.1.1
+Release:	0.%{_rc}.2
 License:	Artistic
 Group:		Applications/Graphics
 Source0:	http://apachegallery.dk/download/%{name}-%{version}%{_rc}.tar.gz
@@ -69,7 +69,7 @@ przeskalowywane w locie i buforowane.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_appdir}/templates/{new,default},%{_apacheicons},/etc/httpd/httpd.conf,%{_cachedir}}
+install -d $RPM_BUILD_ROOT{%{_appdir}/templates/{new,default},%{_apacheicons},/etc/{httpd/httpd.conf,tmpwatch},%{_cachedir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -79,6 +79,8 @@ install templates/default/*.{css,tpl} $RPM_BUILD_ROOT%{_appdir}/templates/defaul
 install htdocs/*.png $RPM_BUILD_ROOT%{_apacheicons}
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/httpd/httpd.conf/09_%{name}.conf
+
+echo "%{_cachedir} 720" > $RPM_BUILD_ROOT/etc/tmpwatch/%{name}.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -101,6 +103,7 @@ fi
 %defattr(644,root,root,755)
 %doc Changes INSTALL README TODO UPGRADE
 %attr(640,root,http) %config(noreplace) %verify(not md5 mtime size) /etc/httpd/httpd.conf/*%{name}.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/tmpwatch/%{name}.conf
 %{perl_vendorlib}/Apache/Gallery.pm
 %dir %{_appdir}
 %dir %{_appdir}/templates
