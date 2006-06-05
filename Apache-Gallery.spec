@@ -32,6 +32,7 @@ BuildRequires:	perl-libapreq2
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 BuildRequires:	rpmbuild(macros) >= 1.268
 Requires:	apache-mod_perl >= 1:2.0.0
+Requires:	apache-mod_alias
 Conflicts:	apache-mod_autoindex
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
