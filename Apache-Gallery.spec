@@ -8,7 +8,7 @@
 %define		pnam	Gallery
 %define		_rc	RC3
 Summary:	An Apache module for creating an online gallery
-Summary(pl):	Modu≥ Apache'a do tworzenia galerii online
+Summary(pl.UTF-8):   Modu≈Ç Apache'a do tworzenia galerii online
 Name:		Apache-Gallery
 Version:	1.0
 Release:	0.%{_rc}.3
@@ -48,11 +48,11 @@ there. It creates an thumbnail index of each directory and allows
 viewing of pictures in different resolutions. Pictures are resized on
 the fly and cached.
 
-%description -l pl
-Apache::Gallery to procedura obs≥ugi dla modu≥u mod_perl po≥oøona w
-DocumentRoot, tworz±ca galeriÍ obrazÛw z umieszczonych tam plikÛw i
-katalogÛw. Tworzy indeks z miniaturkami z kaødego katalogu i pozwala
-na ogl±danie obrazkÛw w rÛønych rozdzielczo∂ciach. Obrazki s±
+%description -l pl.UTF-8
+Apache::Gallery to procedura obs≈Çugi dla modu≈Çu mod_perl po≈Ço≈ºona w
+DocumentRoot, tworzƒÖca galeriƒô obraz√≥w z umieszczonych tam plik√≥w i
+katalog√≥w. Tworzy indeks z miniaturkami z ka≈ºdego katalogu i pozwala
+na oglƒÖdanie obrazk√≥w w r√≥≈ºnych rozdzielczo≈õciach. Obrazki sƒÖ
 przeskalowywane w locie i buforowane.
 
 %prep
