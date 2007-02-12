@@ -8,7 +8,7 @@
 %define		pnam	Gallery
 %define		_rc	RC3
 Summary:	An Apache module for creating an online gallery
-Summary(pl.UTF-8):   Moduł Apache'a do tworzenia galerii online
+Summary(pl.UTF-8):	Moduł Apache'a do tworzenia galerii online
 Name:		Apache-Gallery
 Version:	1.0
 Release:	0.%{_rc}.3
