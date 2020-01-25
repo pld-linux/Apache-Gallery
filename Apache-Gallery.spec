@@ -2,7 +2,6 @@
 # Conditional build:
 %bcond_with	tests	# perform "make test" during build
 #
-%include	/usr/lib/rpm/macros.perl
 %define 	apxs		/usr/sbin/apxs
 %define		pdir	Apache
 %define		pnam	Gallery
